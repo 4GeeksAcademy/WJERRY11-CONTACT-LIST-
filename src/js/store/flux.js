@@ -1,17 +1,24 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
+			contacts: [
 				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
+					"address": " 1234 main street St, Hollywood, FL, USA",
+					"agenda_slug": "Wjerry",
+					"email": "jerrydev32@gmail.com",
+					"full_name": "Jerry Wood",
+					"id": 5360670930,
+					"phone": "7861234567"
 				},
 				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
+					"address": "47568 NW 34ST, 33434 FL, USA",
+					"agenda_slug": "Pamela",
+					"email": "amaga677@gmail.com",
+					"full_name": "Pamela",
+					"id": 41555755647,
+					"phone": "59175837666"
+				},
+				
 			]
 		},
 		actions: {
@@ -20,9 +27,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 				getActions().changeColor(0, "green");
 			},
 			loadSomeData: () => {
-				/**
+				
+			},
+			fetchAllContacts: () => {
+             /**
 					fetch().then().then(data => setStore({ "foo": data.bar }))
 				*/
+				fetch( "https://playground.4geeks.com/apis/fake/contact/agenda/Pamela")
+				.then(response => response.json())
+				.then(data => setStore({
+					"address": data.address,
+					"agenda_slug": data.agenda_slug,
+					"email": data.email,
+					"full_name": data.full_name,
+					"id": data.id,
+					"phone": data.phone
+				}))
 			},
 			changeColor: (index, color) => {
 				//get the store
