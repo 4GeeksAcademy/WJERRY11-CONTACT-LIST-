@@ -26,23 +26,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
-			loadSomeData: () => {
-				
-			},
+			
 			fetchAllContacts: () => {
              /**
 					fetch().then().then(data => setStore({ "foo": data.bar }))
 				*/
 				fetch( "https://playground.4geeks.com/apis/fake/contact/agenda/Pamela")
 				.then(response => response.json())
-				.then(data => setStore({
-					"address": data.address,
-					"agenda_slug": data.agenda_slug,
-					"email": data.email,
-					"full_name": data.full_name,
-					"id": data.id,
-					"phone": data.phone
-				}))
+				.then(data => setStore({ contacts: data}))
 			},
 			changeColor: (index, color) => {
 				//get the store
